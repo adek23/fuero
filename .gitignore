@@ -1,0 +1,4 @@
+/vendor/
+/test.db
+/.idea/
+/web/components/
