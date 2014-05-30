@@ -1,0 +1,20 @@
+{
+    "name": "adek23/fuero",
+    "description": "Rekrutacyjne zadanie testowe",
+    "require": {
+        "components/bootstrap-default": "3.1.1",
+        "twig/twig": "1.16.*@dev",
+        "symfony/http-foundation": "2.4.*"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Adrian Zurek",
+            "email": "adek.nuvo@gmail.com"
+        }
+    ],
+	"config": {
+		"component-dir": "web/components"
+	},
+    "minimum-stability": "dev"
+}
