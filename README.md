@@ -2,7 +2,7 @@ Rekrutacyjne zadanie testowe dla Fuero
 ======================================
 
 Instalacja:
-===========
-$ composer install
+-----------
+> $ composer install
 
-Dane są zapisywane do bazy sqlite *test.db*
+Dane są zapisywane do bazy *sqlite* **test.db**
