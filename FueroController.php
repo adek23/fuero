@@ -31,16 +31,27 @@ class FueroController {
 		if ($request->getMethod() == 'POST') {
 			$url = $request->request->get('url');
 
-			if (!preg_match('#^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$#', $url)) {
-				$data['error'] = 'Niewłaściwy adres url';
-			} else {
+			try {
+				if (!preg_match('#^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$#', $url)) {
+					throw new \Exception('Niewłaściwy adres url');
+				}
+
+				$json = file_get_contents($url);
+				if ($json === false) {
+					throw new \Exception('Niewłaściwy adres url');
+				}
+				$json = json_decode($json, true);
+				if ($json === null) {
+					throw new \Exception('Błąd deserializacji obiektu json');
+				}
+				$data['json'] = print_r($json, true);
+
 				$db = $this->getDb();
 				$stmt = $db->prepare("INSERT INTO urls(url, createdAt) VALUES(:url, datetime('now'))");
 				$stmt->bindParam(':url', $url);
 				$stmt->execute();
-
-				$json = file_get_contents($url);
-				$data['json'] = print_r(json_decode($json, true), true);
+			} catch(\Exception $e) {
+				$data['error'] = $e->getMessage();
 			}
 		}
 
