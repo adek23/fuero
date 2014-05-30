@@ -13,17 +13,25 @@
 			<p class="lead">Rekrutacyjne zadanie testowe dla Fuero</p>
 		</div>
 		<div class="row">
-			<div class="col-md-5 col-md-offset-4">
+			<div class="col-md-7 col-md-offset-2">
 				<div class="jumbotron">
 					<form role="form" method="POST">
 						<div class="form-group{% if error != '' %} has-error{% endif %}">
 							<label for="url">Podaj adres url{% if error != '' %} - {{ error }}{% endif %}</label>
-							<input type="url" class="form-control" id="url" name="url" placeholder="Podaj adres url" value="http://dalvik.nuvo.pl/">
+							<input type="url" class="form-control" id="url" name="url" placeholder="Podaj adres url" value="https://raw.githubusercontent.com/adek23/fuero/master/composer.json">
 						</div>
 						<button type="submit" class="btn btn-primary">Wyślij</button>
 					</form>
 				</div>
 			</div>
+{% if json != '' %}
+			<div class="col-md-7 col-md-offset-2">
+				<div class="jumbotron">
+					<h3>Wynikowy kod json:</h3>
+					<pre>{{ json }}</pre>
+				</div>
+			</div>
+{% endif %}
 		</div>
 	</div>
 </body>
